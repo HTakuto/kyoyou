@@ -25,28 +25,28 @@ export default {
   },
   props: {
     initialTags: {
-    type: Array,
-    default: [],
+      type: Array,
+      default: [],
     },
     autocompleteItems: {
-    type: Array,
-    default: [],
+      type: Array,
+      default: [],
     },
   },
   data() {
     return {
-    tag: '',
-    tags: this.initialTags,
+      tag: '',
+      tags: this.initialTags,
     };
   },
   computed: {
     filteredItems() {
-    return this.autocompleteItems.filter(i => {
-        return i.text.toLowerCase().indexOf(this.tag.toLowerCase()) !== -1;
-    });
+      return this.autocompleteItems.filter(i => {
+          return i.text.toLowerCase().indexOf(this.tag.toLowerCase()) !== -1;
+      });
     },
     tagsJson() {
-    return JSON.stringify(this.tags)
+      return JSON.stringify(this.tags)
     },
   },
 };
