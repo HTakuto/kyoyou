@@ -3,13 +3,11 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.3-node-browsers
-      - image: circleci/mysql:5.7
+      - image: circleci/postgres:11.6-alpine
         environment:
-          MYSQL_DATABASE: kyoyou
-          MYSQL_USER: default
-          MYSQL_PASSWORD: secret
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_PORT: 3306
+          POSTGRES_DB: kyoyou
+          POSTGRES_USER: default
+          POSTGRES_PASSWORD: secret
     environment:
       APP_ENV: kyoyou
       DB_CONNECTION: pgsql
