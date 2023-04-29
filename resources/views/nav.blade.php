@@ -1,24 +1,38 @@
-<nav class="navbar navbar-expand navbar-dark blue-gradient">
+<nav class="navbar navbar-expand navbar-dark">
 
-    <a class="navbar-brand" href="/"><i class="far fa-sticky-note mr-1"></i>教YOU</a>
+    <a href="/">
+      <div class="navbar-brand">
+        <img src="{{ asset('images/教アイコン.png') }}" width="50" height="auto" alt="教YOUアイコン">
+        <h1>教YOU</h1>
+      </div>
+    </a>
 
     <ul class="navbar-nav ml-auto">
-
+      <li class="search-icon"><i class="fas fa-search"></i></li>
+      <form class="search-form" action="/search" method="GET">
+        <input type="search" name="serch" placeholder="記事を検索">
+      </form>
       @guest
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('register') }}">ユーザー登録</a>
+      <li class="nav-item login-btn">
+        <a class="nav-link" href="{{ route('login') }}">ログイン</a>
       </li>
       @endguest
 
       @guest
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('login') }}">ログイン</a>
+      <li class="nav-item signup-btn">
+        <a class="nav-link" href="{{ route('register') }}">新規登録</a>
       </li>
       @endguest
 
       @auth
       <li class="nav-item">
+        <i class="fas fa-bell"></i>
+      @endauth
+
+      @auth
+      <div class="post-btn">
         <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿する</a>
+      </div>
       </li>
       @endauth
 
@@ -48,4 +62,4 @@
 
     </ul>
 
-  </nav>
+</nav>

@@ -7,6 +7,8 @@
   <title>
     @yield('title')
   </title>
+  <!--ファビコン -->
+  <link rel="icon" href="favicon.ico">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -20,7 +22,7 @@
   <div id="app">
     @yield('content')
   </div>
-  
+
   <script src="{{ mix('js/app.js') }}"></script>
   <!-- JQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -33,3 +35,127 @@
 </body>
 
 </html>
+
+<style>
+/* アプリアイコン */
+.navbar-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 12px;
+}
+.navbar-brand img {
+    width: 50px;
+    height: auto;
+}
+.navbar-brand h1 {
+    margin: 0;
+    font-size: 24px;
+    margin-top: 15px;
+}
+
+/* 新規登録ボタン */
+.signup-btn {
+    display: inline-block;
+    padding: 0px 5px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.1s ease-out, color 0.1s ease-out;
+}
+.signup-btn:hover {
+    background-color: #222299;
+    color: navy;
+}
+.post-btn {
+    display: inline-block;
+    padding: 0px 5px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.1s ease-out, color 0.1s ease-out;
+}
+.post-btn:hover {
+    background-color: #222299;
+    color: navy;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.fa-bell {
+    color: #fff;
+    padding: 8px;
+    margin-right: 14px;
+}
+
+/* 検索アイコン */
+.search-icon {
+    padding: 0 1rem;
+    position: relative;
+    margin: 8px;
+}
+
+.search-icon i {
+    color: #fff;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.search-form {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    z-index: 100;
+    background-color: navy;
+}
+
+.search-form input {
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+
+.navbar {
+     background-color: navy;
+}
+
+.nav-item{
+     margin: 8px;
+}
+
+.fas {
+    font-size: 1.4rem;
+}
+
+/* レスポンシブ */
+@media (min-width: 768px) {
+    .search-icon {
+        display: none;
+    }
+    .search-form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: static;
+        width: auto;
+    }
+
+    .search-form input {
+        margin-right: 0.5rem;
+        width: 20rem;
+    }
+}
+</style>
+
+<script>
+</script>
