@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.3-node-browsers
-      - image: cimg/postgres:11.17
+      - image: circleci/postgres:11.6-alpine
         environment:
           POSTGRES_DB: kyoyou
           POSTGRES_USER: default
@@ -45,7 +45,7 @@ jobs:
             sudo apt-get update
             sudo apt-get install libpq-dev
             sudo docker-php-ext-install pdo_pgsql
-            dockerize -wait tcp://localhost:5432 -timeout 1
+            dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
           name: php test
           command: vendor/bin/phpunit
