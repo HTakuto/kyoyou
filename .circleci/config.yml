@@ -11,7 +11,7 @@ jobs:
     environment:
       APP_ENV: kyoyou
       DB_CONNECTION: pgsql
-      DB_HOST: localhost
+      DB_HOST: postgres
       DB_PORT: 5432
       DB_DATABASE: kyoyou
       DB_USERNAME: default
