@@ -8,9 +8,9 @@
     </a>
 
     <ul class="navbar-nav ml-auto">
-      <li class="search-icon"><i class="fas fa-search"></i></li>
-      <form class="search-form" action="/search" method="GET">
-        <input type="search" name="serch" placeholder="記事を検索">
+      <div class="search-icon"><i class="fas fa-search"></i></div>
+      <form class="search-form" action="{{ route('articles.index') }}" method="GET">
+        <input type="text" name="keyword"  placeholder="記事を検索">
       </form>
       @guest
       <li class="nav-item login-btn">
