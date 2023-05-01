@@ -49,6 +49,11 @@
             マイページ
           </button>
           <div class="dropdown-divider"></div>
+          <button form="post-button" class="dropdown-item" type="button"
+                  onclick="location.href='{{ route('articles.create') }}'">
+            投稿する
+          </button>
+          <div class="dropdown-divider"></div>
           <button form="logout-button" class="dropdown-item" type="submit">
             ログアウト
           </button>

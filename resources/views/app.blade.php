@@ -15,6 +15,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../public/css/app.css">
 </head>
 
 <body>
@@ -37,6 +39,18 @@
 </html>
 
 <style>
+/* ナビバー全体 */
+.navbar {
+    padding: 0px 20px;
+    background-color: navy;
+}
+
+.nav-item {
+    margin: 8px;
+    display: flex;
+    align-items: center;
+}
+
 /* アプリアイコン */
 .navbar-brand {
     display: flex;
@@ -83,11 +97,6 @@
     color: navy;
 }
 
-.nav-item {
-    display: flex;
-    align-items: center;
-}
-
 .fa-bell {
     color: #fff;
     padding: 8px;
@@ -103,7 +112,6 @@
 
 .search-icon i {
     color: #fff;
-    font-size: 1.4rem;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -125,16 +133,8 @@
     width: 100%;
 }
 
-.navbar {
-     background-color: navy;
-}
-
-.nav-item{
-     margin: 8px;
-}
-
-.fas {
-    font-size: 1.4rem;
+.container {
+    padding: 50px 0px;
 }
 
 /* レスポンシブ */
@@ -153,6 +153,10 @@
     .search-form input {
         margin-right: 0.5rem;
         width: 20rem;
+    }
+
+    .post-btn {
+        display: block;
     }
 }
 </style>
