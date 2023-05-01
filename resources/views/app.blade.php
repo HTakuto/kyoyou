@@ -45,10 +45,11 @@
     background-color: navy;
 }
 
-.nav-item {
+ul.navbar-nav li {
     margin: 8px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 /* アプリアイコン */
