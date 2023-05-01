@@ -17,19 +17,16 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $articles = Article::all()->sortByDesc('created_at')
-            ->load(['user', 'likes', 'tags']);
-
+        ->load(['user', 'likes', 'tags']);
+        
         $keyword = $request->input('keyword');
 
-        $query = Article::query();
-
         if(!empty($keyword)) {
+            $query = Article::query();
             $query->where('title', 'LIKE', "%{$keyword}%")
                 ->orWhere('body', 'LIKE', "%{$keyword}%");
-
+            $articles = $query->get();
         }
-
-        $articles = $query->get();
 
         return view('articles.index', compact('articles', 'keyword'));
     }
