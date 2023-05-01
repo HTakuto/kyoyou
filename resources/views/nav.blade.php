@@ -2,7 +2,7 @@
 
     <a href="/">
       <div class="navbar-brand">
-        <img src="{{ asset('images/教アイコン.png') }}" width="50" height="auto" alt="教YOUアイコン">
+        <img src="{{ asset('images/教アイコン.png') }}" alt="教YOUアイコン">
         <h1>教YOU</h1>
       </div>
     </a>
@@ -27,12 +27,6 @@
       @auth
       <li class="nav-item">
         <i class="fas fa-bell"></i>
-      @endauth
-
-      @auth
-      <div class="post-btn">
-        <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿する</a>
-      </div>
       </li>
       @endauth
 
@@ -65,6 +59,15 @@
       <!-- Dropdown -->
       @endauth
 
+      <div class="nav-last">
+      @auth
+        <li class="nav-item">
+        <div class="post-btn">
+            <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿する</a>
+        </div>
+        </li>
+      @endauth
+    </div>
     </ul>
 
 </nav>

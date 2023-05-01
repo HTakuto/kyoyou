@@ -41,8 +41,10 @@
 <style>
 /* ナビバー全体 */
 .navbar {
-    padding: 0px 20px;
     background-color: navy;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 ul.navbar-nav li {
@@ -100,8 +102,7 @@ ul.navbar-nav li {
 
 .fa-bell {
     color: #fff;
-    padding: 8px;
-    margin-right: 14px;
+    padding: 8px 0px 8px 8px;
 }
 
 /* 検索アイコン */
@@ -135,7 +136,7 @@ ul.navbar-nav li {
 }
 
 .container {
-    padding: 50px 0px;
+    padding: 20px 0px;
 }
 
 /* レスポンシブ */
@@ -156,11 +157,37 @@ ul.navbar-nav li {
         width: 20rem;
     }
 
-    .post-btn {
-        display: block;
-    }
+    .search-form {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 999;
+}
+}
+
+@media (max-width: 600px) {
+  .nav-last {
+    display: none;
+  }
+
+  .card{
+    margin: 20px;
+  }
+
+  .search-form {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 999;
+  }
 }
 </style>
 
 <script>
+// クリックしたら検索バー表示
+$(function() {
+  $('.search-icon').on('click', function() {
+    $('.search-form').slideToggle();
+  });
+});
 </script>
