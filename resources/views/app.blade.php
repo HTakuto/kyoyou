@@ -139,6 +139,46 @@ ul.navbar-nav li {
     padding: 20px 0px;
 }
 
+/* footer */
+.footer {
+  background-color: #23282d;
+  color: #fff;
+  padding: 50px 0;
+}
+
+.footer__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer__item {
+  flex: 0 1 300px;
+  margin-right: 40px;
+}
+
+.footer__heading {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.footer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__list li {
+  margin-bottom: 10px;
+}
+
+.footer__list a {
+  color: #fff;
+  text-decoration: none;
+}
+
 /* レスポンシブ */
 @media (min-width: 768px) {
     .search-icon {
@@ -173,6 +213,18 @@ ul.navbar-nav li {
     right: 0;
     z-index: 999;
   }
+
+  .footer__container {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding: 0px 50px;
+    }
+
+    .footer__item {
+        flex: 0 1 100%;
+        margin-right: 0;
+        margin-bottom: 40px;
+    }
 }
 </style>
 
