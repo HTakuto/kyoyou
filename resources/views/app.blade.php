@@ -156,13 +156,6 @@ ul.navbar-nav li {
         margin-right: 0.5rem;
         width: 20rem;
     }
-
-    .search-form {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  z-index: 999;
-}
 }
 
 @media (max-width: 600px) {
