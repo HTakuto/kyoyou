@@ -30,7 +30,12 @@ class ArticleController extends Controller
             $articles = $query->get();
         }
 
-        return view('articles.index', compact('articles', 'keyword'));
+        $like_articles = Article::withCount('likes')
+                        ->orderByDesc('likes_count')
+                        ->take(5)
+                        ->get();
+
+        return view('articles.index', compact('articles', 'keyword', 'like_articles'));
     }
 
     public function create()
