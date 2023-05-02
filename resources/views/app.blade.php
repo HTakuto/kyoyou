@@ -139,6 +139,11 @@ ul.navbar-nav li {
     padding: 20px 0px;
 }
 
+/* 記事 */
+.col-md-4 {
+    margin-top: 15px;
+}
+
 /* footer */
 .footer {
   background-color: #23282d;
