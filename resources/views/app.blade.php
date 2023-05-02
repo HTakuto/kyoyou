@@ -135,12 +135,18 @@ ul.navbar-nav li {
     width: 100%;
 }
 
-.container {
-    padding: 20px 0px;
+/* 全体 */
+.row {
+    padding: 20px 20px;
+}
+
+/* ユーザーランキングアイコン */
+.list-group-item > i{
+    font-size: 16px;
 }
 
 /* 記事 */
-.col-md-4 {
+.col-md-3 {
     margin-top: 15px;
 }
 
