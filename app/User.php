@@ -82,4 +82,8 @@ class User extends Authenticatable
     {
         return $this->followings->count();
     }
+
+    public function count_followers() {
+        return $this->followers->count();
+    }
 }
