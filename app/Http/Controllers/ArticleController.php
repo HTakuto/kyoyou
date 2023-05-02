@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Tag;
+use App\User;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 
@@ -32,10 +33,15 @@ class ArticleController extends Controller
 
         $like_articles = Article::withCount('likes')
                         ->orderByDesc('likes_count')
-                        ->take(5)
+                        ->take(10)
                         ->get();
 
-        return view('articles.index', compact('articles', 'keyword', 'like_articles'));
+        $follow_ranking = User::withCount('followers')
+                        ->orderByDesc('followers_count')
+                        ->take(10)
+                        ->get();
+
+        return view('articles.index', compact('articles', 'keyword', 'like_articles', 'follow_ranking'));
     }
 
     public function create()
