@@ -92,5 +92,12 @@
         </div>
       </div>
     @endif
-  @endforeach
+    @endforeach
+    @if($article->pdf_file)
+    <div class="mt-4 d-flex justify-content-center article-pdf-container" style="margin: 0px;">
+        <div class="pdf" style="position: relative; width: 90%; height: 0; padding-top: 56.25%; margin: 0px;">
+            <iframe class="article-pdf" src="{{ Storage::disk('public')->url('pdfs/' . $article->pdf_file) }}" frameborder="0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 0 0 20px 0;"></iframe>
+        </div>
+    </div>
+    @endif
 </div>
