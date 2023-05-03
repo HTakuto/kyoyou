@@ -10,6 +10,7 @@
     <ul class="navbar-nav ml-auto">
       <div class="search-icon"><i class="fas fa-search"></i></div>
       <form class="search-form" action="{{ route('articles.index') }}" method="GET">
+        @csrf
         <input type="text" name="keyword"  placeholder="記事を検索">
       </form>
       @guest
