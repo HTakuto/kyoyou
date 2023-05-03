@@ -106,19 +106,6 @@ ul.navbar-nav li {
 }
 
 /* 検索アイコン */
-.search-icon {
-    padding: 0 1rem;
-    position: relative;
-    margin: 8px;
-}
-
-.search-icon i {
-    color: #fff;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 .search-form {
     display: none;
     position: absolute;
@@ -126,6 +113,7 @@ ul.navbar-nav li {
     width: 100%;
     z-index: 100;
     background-color: navy;
+    margin: 0px;
 }
 
 .search-form input {
@@ -140,12 +128,24 @@ ul.navbar-nav li {
     padding: 20px 20px;
 }
 
+.card{
+    margin-bottom: 20px;
+}
+
 /* ユーザーランキングアイコン */
 .list-group-item > i{
     font-size: 16px;
 }
 
 /* 記事 */
+.article-pdf-container {
+  max-width: 100%;
+  overflow: hidden;
+}
+.article-pdf {
+  height: 500px;
+  border: none;
+}
 .col-md-3 {
     margin-top: 15px;
 }
@@ -235,6 +235,36 @@ ul.navbar-nav li {
         flex: 0 1 100%;
         margin-right: 0;
         margin-bottom: 40px;
+    }
+
+    /* 検索アイコン */
+    .search-icon {
+        padding: 0 1rem;
+        position: relative;
+        margin: 8px;
+    }
+
+    .search-icon i {
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .search-form {
+        display: none;
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        z-index: 100;
+        background-color: navy;
+    }
+
+    .search-form input {
+        border-radius: 4px;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        width: 100%;
     }
 }
 </style>
