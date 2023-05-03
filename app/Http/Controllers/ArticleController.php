@@ -59,6 +59,15 @@ class ArticleController extends Controller
     {
         $article->fill($request->all());
         $article->user_id = $request->user()->id;
+
+        // PDFファイルの保存
+        if ($request->hasFile('pdf_file')) {
+            $pdf = $request->file('pdf_file');
+            $filename = time() . '_' . $pdf->getClientOriginalName();
+            $path = $pdf->storeAs('public/pdfs', $filename);
+            $article->pdf_file = $filename;
+        }
+
         $article->save();
 
         $request->tags->each(function ($tagName) use ($article) {
@@ -88,6 +97,14 @@ class ArticleController extends Controller
 
     public function update(ArticleRequest $request, Article $article)
     {
+        // PDFファイルの保存
+        if ($request->hasFile('pdf_file')) {
+            $pdf = $request->file('pdf_file');
+            $filename = time() . '_' . $pdf->getClientOriginalName();
+            $path = $pdf->storeAs('public/pdfs', $filename);
+            $article->pdf_file = $filename;
+        }
+
         $article->fill($request->all())->save();
 
         $article->tags()->detach();
