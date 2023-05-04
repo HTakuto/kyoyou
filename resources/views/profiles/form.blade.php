@@ -1,6 +1,6 @@
 @csrf
 <div class="form-group">
-    <label for="user_image">プロフィール画像</label>
+    <label for="user_image" style="margin-top: 15px;">プロフィール画像</label>
     <input id="user_image" type="file" name="user_image" class="form-control-file">
   </div>
 <div class="form-group">
