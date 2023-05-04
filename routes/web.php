@@ -43,3 +43,6 @@ Route::prefix('users')->name('users.')->group(function () {
         Route::delete('/{name}/follow', 'UserController@unfollow')->name('unfollow');
     });
 });
+
+Route::get('/profiles/edit', 'ProfileController@edit')->name('profiles.edit');
+Route::patch('/profiles', 'ProfileController@update')->name('profiles.update');
