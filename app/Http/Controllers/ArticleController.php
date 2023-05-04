@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Tag;
 use App\User;
+use App\Profile;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 
@@ -41,7 +42,9 @@ class ArticleController extends Controller
                         ->take(10)
                         ->get();
 
-        return view('articles.index', compact('articles', 'keyword', 'like_articles', 'follow_ranking'));
+        $profile = auth()->user()->profile ?? new Profile();
+
+        return view('articles.index', compact('articles', 'keyword', 'like_articles', 'follow_ranking', 'profile'));
     }
 
     public function create()

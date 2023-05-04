@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Profile;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,10 +13,12 @@ class UserController extends Controller
         $user = User::where('name', $name)->first()
             ->load(['articles.user', 'articles.likes', 'articles.tags']);
         $articles = $user->articles->sortByDesc('created_at');
+        $profile = $user->profile;
 
         return view('users.show', [
             'user' => $user,
             'articles' => $articles,
+            'profile' => $profile,
         ]);
     }
 
