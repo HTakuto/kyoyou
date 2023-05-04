@@ -12,6 +12,12 @@
             endpoint="{{ route('users.follow', ['name' => $user->name]) }}"
           >
           </follow-button>
+        @elseif( Auth::id() === $user->id )
+          <div class="ml-auto">
+            <a href="{{ route('profiles.edit') }}" class="btn btn-sm btn-light text-black">
+              プロフィールを編集する
+            </a>
+          </div>
         @endif
       </div>
       <h2 class="h5 card-title m-0">
