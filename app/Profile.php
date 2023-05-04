@@ -12,6 +12,7 @@ class Profile extends Model
         'age',
         'gender',
         'school_type',
+        'school_year',
         'grade',
         'subject',
         'club',
