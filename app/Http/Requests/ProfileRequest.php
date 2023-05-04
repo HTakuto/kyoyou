@@ -45,7 +45,7 @@ class ProfileRequest extends FormRequest
             'school_year' => '学年',
             'subject' => '教科',
             'club' => '部活動',
-            'comment' => 'コメント',
+            'comment' => '自己紹介',
         ];
     }
 }
