@@ -1,13 +1,13 @@
 <div class="card mt-3">
-    <div class="card-body d-flex flex-row">
+    <div class="card-body d-flex flex-row" style="display:flex; align-items: center; ">
       <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
-      @if ($profile->user_image)
+      @if ($article->user->profile && $article->user->profile->user_image)
         <div class="col-md-3 col-sm-6 text-center">
-          <img src="{{ asset('public/profiles/'.$profile->user_image) }}" alt="プロフィール写真" class="rounded-circle" width="100">
+          <img  src="{{ Storage::disk('public')->url('profiles/' . $profile->user_image) }}"  alt="アイコン" class="rounded-circle" width="100">
         </div>
       @else
         <div class="col-md-3 col-sm-6 text-center">
-          <i class="fas fa-user-circle fa-3x mr-1"></i>
+          <i class="fas fa-user-circle fa-3x mr-1" style="margin-bottom: 10px;"></i>
         </div>
       @endif
       </a>

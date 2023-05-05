@@ -29,8 +29,8 @@ class ProfileController extends Controller
 
         if ($request->hasFile('user_image')) {
             $user_image = $request->file('user_image');
-            $filename = $user_image->getClientOriginalName();
-            $user_image->storeAs('public/profiles', $filename);
+            $filename = time() . '_' . $user_image->getClientOriginalName();
+            $path = $user_image->storeAs('public/profiles', $filename);
             $profile->user_image = $filename;
         }
 
