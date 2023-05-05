@@ -1,7 +1,15 @@
 <div class="card mt-3">
-    <div class="card-body d-flex flex-row">
+    <div class="card-body d-flex flex-row" style="display:flex; align-items: center; ">
       <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
-        <i class="fas fa-user-circle fa-3x mr-1"></i>
+      @if ($article->user->profile && $article->user->profile->user_image)
+        <div class="col-md-3 col-sm-6 text-center">
+          <img  src="{{ Storage::disk('public')->url('profiles/' . $profile->user_image) }}"  alt="アイコン" class="rounded-circle" width="100">
+        </div>
+      @else
+        <div class="col-md-3 col-sm-6 text-center">
+          <i class="fas fa-user-circle fa-3x mr-1" style="margin-bottom: 10px;"></i>
+        </div>
+      @endif
       </a>
       <div>
         <div class="font-weight-bold">
@@ -59,6 +67,7 @@
       @endif
 
     </div>
+    <hr>
     <div class="card-body pt-0 pb-2">
       <h3 class="h4 card-title">
         <a class="text-dark" href="{{ route('articles.show', ['article' => $article]) }}">
@@ -69,17 +78,14 @@
         {!! nl2br(e( $article->body )) !!}
       </div>
     </div>
-    <div class="card-body pt-0 pb-2 pl-3">
-      <div class="card-text">
-        <article-like
-        :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
-        :initial-count-likes='@json($article->count_likes)'
-        :authorized='@json(Auth::check())'
-        endpoint="{{ route('articles.like', ['article' => $article]) }}"
-        >
-        </article-like>
-      </div>
+    @if($article->pdf_file)
+    <div class="mt-4 d-flex justify-content-center article-pdf-container" style="margin: 0px;">
+        <div class="pdf" style="position: relative; width: 90%; height: 0; padding-top: 56.25%; margin: 0px;">
+            <iframe class="article-pdf" src="{{ Storage::disk('public')->url('pdfs/' . $article->pdf_file) }}" frameborder="0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 0 0 20px 0;"></iframe>
+        </div>
     </div>
+    @endif
+    <hr>
     @foreach($article->tags as $tag)
     @if($loop->first)
       <div class="card-body pt-0 pb-4 pl-3">
@@ -93,11 +99,15 @@
       </div>
     @endif
     @endforeach
-    @if($article->pdf_file)
-    <div class="mt-4 d-flex justify-content-center article-pdf-container" style="margin: 0px;">
-        <div class="pdf" style="position: relative; width: 90%; height: 0; padding-top: 56.25%; margin: 0px;">
-            <iframe class="article-pdf" src="{{ Storage::disk('public')->url('pdfs/' . $article->pdf_file) }}" frameborder="0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 0 0 20px 0;"></iframe>
+    <div class="card-body pt-0 pb-2 pl-3">
+        <div class="card-text">
+          <article-like
+          :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
+          :initial-count-likes='@json($article->count_likes)'
+          :authorized='@json(Auth::check())'
+          endpoint="{{ route('articles.like', ['article' => $article]) }}"
+          >
+          </article-like>
         </div>
     </div>
-    @endif
 </div>
