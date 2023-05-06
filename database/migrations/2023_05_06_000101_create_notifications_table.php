@@ -17,9 +17,11 @@ class CreateNotificationsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('notifiable_id');
+            $table->string('type');
             $table->string('notifiable_type');
+            $table->text('data')->nullable();
             $table->unsignedBigInteger('from_user_id')->nullable();
-            $table->boolean('read')->default(false);
+            $table->boolean('read_at')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
