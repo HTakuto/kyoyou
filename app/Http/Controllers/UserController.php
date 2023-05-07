@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Profile;
 use Illuminate\Http\Request;
+use App\Notifications\FollowNotification;
 
 class UserController extends Controller
 {
@@ -64,13 +65,15 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
 
-        if ($user->id === $request->user()->id)
-        {
+        if ($user->id === $request->user()->id) {
             return abort('404', 'Cannot follow yourself.');
         }
 
         $request->user()->followings()->detach($user);
         $request->user()->followings()->attach($user);
+
+        // フォローされたユーザーに通知を送信
+        $user->notify(new FollowNotification(auth()->user()));
 
         return ['name' => $name];
     }
