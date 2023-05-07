@@ -7,6 +7,7 @@ use App\Tag;
 use App\User;
 use App\Profile;
 use App\Http\Requests\ArticleRequest;
+use App\Notifications\ArticleLikedNotification;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -133,6 +134,8 @@ class ArticleController extends Controller
     {
         $article->likes()->detach($request->user()->id);
         $article->likes()->attach($request->user()->id);
+
+        $article->user->notify(new ArticleLikedNotification($article, auth()->user()));
 
         return [
             'id' => $article->id,
