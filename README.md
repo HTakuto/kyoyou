@@ -36,4 +36,4 @@
 ## データベース設計
 ## 画面遷移図
 ## AWSアーキテクチャ図
-![AWSアーキテクチャ図](/laravel/images/教YOU-AWSアーキテクチャ図.jpg)
+![AWSアーキテクチャ図](https://raw.github.com/wiki/HTakuto/kyoyou/laravel/images/教YOU-AWSアーキテクチャ図.jpg)
