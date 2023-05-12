@@ -1,5 +1,5 @@
-
 :::note warn
+注意
 ※アプリケーションは現在作成中で未完成の状態です。
 :::
 ## アプリケーション名
@@ -33,7 +33,12 @@
 - ユーザーチャット機能
 - 部活動投稿機能
 - HR/校務分掌/その他投稿機能
+- 単体テスト（全機能）
+- 結合テスト（全機能）
+- 自動デプロイ
 ## データベース設計
+![教YOU-ER図](https://raw.github.com/wiki/HTakuto/kyoyou/images/教YOU-ER図.jpg)
 ## 画面遷移図
+![教YOU-画面遷移図](https://raw.github.com/wiki/HTakuto/kyoyou/images/教YOU-画面遷移図.jpg)
 ## AWSアーキテクチャ図
-![AWSアーキテクチャ図](https://raw.github.com/wiki/HTakuto/kyoyou/laravel/images/教YOU-AWSアーキテクチャ図.jpg)
+![AWSアーキテクチャ図](https://raw.github.com/wiki/HTakuto/kyoyou/images/教YOU-AWSアーキテクチャ図.jpg)
