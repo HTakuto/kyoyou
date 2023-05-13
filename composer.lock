@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80add0e613643254ace2077ee5757735",
+    "content-hash": "5ad3273ea725300a366575f1133d1b30",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -871,6 +871,10 @@
                 "laravel",
                 "oauth"
             ],
+            "support": {
+                "issues": "https://github.com/laravel/socialite/issues",
+                "source": "https://github.com/laravel/socialite"
+            },
             "time": "2023-01-20T15:42:35+00:00"
         },
         {
@@ -6587,5 +6591,5 @@
         "php": "^7.2.5|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.3.0"
 }
