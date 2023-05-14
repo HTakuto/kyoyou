@@ -135,7 +135,8 @@ class ArticleController extends Controller
         $article->likes()->detach($request->user()->id);
         $article->likes()->attach($request->user()->id);
 
-        $article->user->notify(new ArticleLikedNotification($article, auth()->user()));
+        // 投稿にいいねがついたら通知
+        // $article->user->notify(new ArticleLikedNotification($article, auth()->user()));
 
         return [
             'id' => $article->id,
