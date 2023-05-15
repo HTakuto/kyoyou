@@ -4,10 +4,12 @@
         <h2 class="mb-4">コメント</h2>
         <comment-form
           :article-id="{{ $article->id }}"
+          @comment-added="scrollToBottom"
         >
         </comment-form>
+        <div id="comments-container">
         @forelse($article->comments as $comment)
-        <div class="border-top p-4">
+          <div class="border-top p-4">
             <div class="d-flex justify-content-between">
                 <div>
                     <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
@@ -32,10 +34,11 @@
             <p class="mt-2">
                 {!! nl2br(e($comment->content)) !!}
             </p>
-        </div>
+          </div>
         @empty
             <p>コメントはまだありません。</p>
         @endforelse
+        </div>
         <hr>
       </div>
     </div>

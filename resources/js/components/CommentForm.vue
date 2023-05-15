@@ -17,42 +17,35 @@
     props: {
       articleId: {
         type: Number,
-        required: true
-      }
+        required: true,
+      },
     },
     data() {
       return {
-        content: '',
-        comments: []
+        content: "",
       };
     },
     methods: {
       addComment() {
-        axios.post('/comments', {
+        axios
+          .post("/comments", {
             content: this.content,
             article_id: this.articleId,
-        })
-        .then(response => {
-            this.comments.unshift(response.data);
-            this.content = '';
-            this.fetchComments();
-        })
-        .catch(error => {
+          })
+          .then((response) => {
+            this.content = "";
+            this.$emit("comment-added", response.data);
+          })
+          .catch((error) => {
             console.error(error);
-        });
+          });
       },
-      fetchComments() {
-        axios.get(`/comments?article_id=${this.articleId}`)
-        .then(response => {
-          this.comments = response.data;
-        })
-        .catch(error => {
-          console.error(error);
-        });
-      }
+      scrollToBottom() {
+            setTimeout(() => {
+                const container = document.getElementById("comments-container");
+                container.scrollTop = container.scrollHeight;
+            }, 0);
+      },
     },
-    mounted() {
-      this.fetchComments();
-    }
   };
   </script>
