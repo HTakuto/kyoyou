@@ -2,19 +2,14 @@
     <div class="row">
       <div class="col-12">
         <h2 class="mb-4">コメント</h2>
-        <form method="POST" action="{{ route('comments.store') }}"  style="margin-bottom: 30px;">
-          @csrf
-          <div class="form-group">
-            <input type="hidden" name="article_id" value="{{ $article->id }}">
-            <textarea class="form-control" name="content" rows="4" placeholder="コメントを入力してください"></textarea>
-          </div>
-          <div class="text-right">
-            <button type="submit" class="btn btn-primary">コメントする</button>
-          </div>
-        </form>
-
+        <comment-form
+          :article-id="{{ $article->id }}"
+          @comment-added="scrollToBottom"
+        >
+        </comment-form>
+        <div id="comments-container">
         @forelse($article->comments as $comment)
-        <div class="border-top p-4">
+          <div class="border-top p-4">
             <div class="d-flex justify-content-between">
                 <div>
                     <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
@@ -39,10 +34,11 @@
             <p class="mt-2">
                 {!! nl2br(e($comment->content)) !!}
             </p>
-        </div>
+          </div>
         @empty
             <p>コメントはまだありません。</p>
         @endforelse
+        </div>
         <hr>
       </div>
     </div>

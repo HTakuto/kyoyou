@@ -73,7 +73,7 @@ class UserController extends Controller
         $request->user()->followings()->attach($user);
 
         // フォローされたユーザーに通知を送信
-        $user->notify(new FollowNotification(auth()->user()));
+        // $user->notify(new FollowNotification(auth()->user()));
 
         return ['name' => $name];
     }
