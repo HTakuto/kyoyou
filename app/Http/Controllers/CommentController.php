@@ -33,7 +33,7 @@ class CommentController extends Controller
         $article = Article::findOrFail($validatedData['article_id']);
 
         // 記事の投稿者に通知を送信
-        $article->user->notify(new CommentNotification($comment, auth()->user()));
+        // $article->user->notify(new CommentNotification($comment, auth()->user()));
 
         return redirect()->back();
     }
