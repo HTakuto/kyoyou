@@ -38,20 +38,19 @@
           @if ($notifications->isEmpty())
             <a class="dropdown-item" href="#">通知はありません</a>
           @else
-          @foreach ($notifications as $notification)
-            @unless($notification->read_at)
-                <a class="dropdown-item" href="{{ $notification->data['url'] }}">
-                @if ($notification->type === 'like')
-                    {{ \App\Article::find($notification->notifiable_id)->title }}が{{ $notification->causedByUser->name }}さんにいいねされました。
-                @elseif ($notification->type === 'comment')
-                    {{ \App\Article::find($notification->notifiable_id)->title }}が{{ $notification->causedByUser->name }}さんにコメントされました。
-                @elseif ($notification->type === 'follow')
-                    {{ $notification->causedByUser->name }}さんにフォローされました。
-                @endif
-                </a>
-            @endunless
-          @endforeach
-
+            @foreach ($notifications as $notification)
+              @unless($notification->read_at)
+              <a class="dropdown-item" href="{{ $notification->data['url'] }}">
+              @if ($notification->type === 'like')
+                  <a href="{{ route('articles.show', ['article' => $notification->notifiable_id]) }}">{{ \App\Article::find($notification->notifiable_id)->title }}</a>が<a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a>さんにいいねされました。
+              @elseif ($notification->type === 'comment')
+                  <a href="{{ route('articles.show', ['article' => $notification->notifiable_id]) }}">{{ \App\Article::find($notification->notifiable_id)->title }}</a>が<a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a>さんにコメントされました。
+              @elseif ($notification->type === 'follow')
+                  <a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a>さんにフォローされました。
+              @endif
+              </a>
+              @endunless
+            @endforeach
           @endif
         </div>
       </li>
