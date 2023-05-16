@@ -29,18 +29,34 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-bell"></i>
+          @if ($unreadNotificationsCount > 0)
+            <span class="notification-badge">{{ $unreadNotificationsCount }}</span>
+          @endif
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-          @forelse(Auth::user()->unreadNotifications as $notification)
-            <a class="dropdown-item" href="{{ route('articles.show', ['article' => $notification->data['article_id']]) }}">
-              {{ $notification->data['user_name'] }}さんがあなたの記事に{{ $notification->data['action'] }}しました。
-            </a>
-          @empty
-            <p class="dropdown-item">通知はありません。</p>
-          @endforelse
+          <h6 class="dropdown-header">通知</h6>
+          @if ($notifications->isEmpty())
+            <a class="dropdown-item" href="#">通知はありません</a>
+          @else
+          @foreach ($notifications as $notification)
+            @unless($notification->read_at)
+                <a class="dropdown-item" href="{{ $notification->data['url'] }}">
+                @if ($notification->type === 'like')
+                    {{ \App\Article::find($notification->notifiable_id)->title }}が{{ $notification->causedByUser->name }}さんにいいねされました。
+                @elseif ($notification->type === 'comment')
+                    {{ \App\Article::find($notification->notifiable_id)->title }}が{{ $notification->causedByUser->name }}さんにコメントされました。
+                @elseif ($notification->type === 'follow')
+                    {{ $notification->causedByUser->name }}さんにフォローされました。
+                @endif
+                </a>
+            @endunless
+          @endforeach
+
+          @endif
         </div>
       </li>
       @endauth
+
 
       @auth
       <!-- Dropdown -->
