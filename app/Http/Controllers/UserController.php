@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Profile;
+use App\Notification;
 use Illuminate\Http\Request;
-use App\Notifications\FollowNotification;
 
 class UserController extends Controller
 {
@@ -72,8 +72,14 @@ class UserController extends Controller
         $request->user()->followings()->detach($user);
         $request->user()->followings()->attach($user);
 
-        // フォローされたユーザーに通知を送信
-        // $user->notify(new FollowNotification(auth()->user()));
+        // 通知を作成
+        $notification = new Notification();
+        $notification->user_id = $user->id;
+        $notification->notifiable_id = $request->user()->id;
+        $notification->type = 'follow';
+        $notification->notifiable_type = User::class;
+        $notification->caused_by_user_id = auth()->user()->id;
+        $notification->save();
 
         return ['name' => $name];
     }
