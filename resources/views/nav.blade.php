@@ -29,18 +29,37 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-bell"></i>
+          @if ($unreadNotificationsCount > 0)
+            <span class="notification-badge">{{ $unreadNotificationsCount }}</span>
+          @endif
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-          @forelse(Auth::user()->unreadNotifications as $notification)
-            <a class="dropdown-item" href="{{ route('articles.show', ['article' => $notification->data['article_id']]) }}">
-              {{ $notification->data['user_name'] }}さんがあなたの記事に{{ $notification->data['action'] }}しました。
-            </a>
-          @empty
-            <p class="dropdown-item">通知はありません。</p>
-          @endforelse
+        <div class="dropdown-menu dropdown-menu-right nav-notification" aria-labelledby="navbarDropdownMenuLink" style="min-width: 60vw;">
+            <h6 class="dropdown-header">通知</h6>
+            @if ($notifications->isEmpty())
+                <a class="dropdown-item" href="#">通知はありません</a>
+            @else
+                @foreach ($notifications as $notification)
+                    @unless($notification->read_at)
+                        <hr>
+                        <div class="py-2 px-4 hover:bg-gray-100">
+                            <div class="mb-1">
+                                @if ($notification->type === 'like')
+                                    <a href="{{ route('articles.show', ['article' => $notification->notifiable_id]) }}">{{ \App\Article::find($notification->notifiable_id)->title }}</a><a>が</a><a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a><a>さんにいいねされました。</a>
+                                @elseif ($notification->type === 'comment')
+                                    <a href="{{ route('articles.show', ['article' => $notification->notifiable_id]) }}">{{ \App\Article::find($notification->notifiable_id)->title }}</a><a>が</a><a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a><a>さんにコメントされました。</a>
+                                @elseif ($notification->type === 'follow')
+                                    <a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a><a>さんにフォローされました。</a>
+                                @endif
+                            </div>
+                            <div class="text-gray-400 text-xs text-right" style="margin-top: -0.5rem;">{{ $notification->created_at->diffForHumans() }}</div>
+                        </div>
+                    @endunless
+                @endforeach
+            @endif
         </div>
       </li>
       @endauth
+
 
       @auth
       <!-- Dropdown -->

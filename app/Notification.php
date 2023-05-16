@@ -12,18 +12,32 @@ class Notification extends Model
         'notifiable_id',
         'type',
         'notifiable_type',
-        'data',
-        'from_user_id',
         'read_at',
+        'caused_by_user_id'
     ];
+
+    protected $casts = [
+        'read_at' => 'boolean',
+    ];
+
+    public function notifiable()
+    {
+        return $this->morphTo('notifiable');
+    }
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function fromUser(): BelongsTo
+    public function causedByUser()
     {
-        return $this->belongsTo(User::class, 'from_user_id');
+    return $this->belongsTo(User::class, 'caused_by_user_id');
+    }
+
+    public function markAsRead()
+    {
+        $this->read_at = true;
+        $this->save();
     }
 }

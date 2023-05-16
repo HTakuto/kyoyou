@@ -266,6 +266,14 @@ ul.navbar-nav li {
         padding: 0.5rem 1rem;
         width: 100%;
     }
+
+    .nav-notification {
+        position: absolute;
+        top: 100%;
+        width: 68vw;
+        transform: translateY(2%);
+        transform: translateX(30%);
+    }
 }
 </style>
 

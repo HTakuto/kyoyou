@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Article;
+use App\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CommentRequest;
-use App\Notifications\CommentNotification;
 
 class CommentController extends Controller
 {
@@ -32,8 +32,14 @@ class CommentController extends Controller
 
         $article = Article::findOrFail($validatedData['article_id']);
 
-        // 記事の投稿者に通知を送信
-        // $article->user->notify(new CommentNotification($comment, auth()->user()));
+        // 通知を作成
+        $notification = new Notification();
+        $notification->user_id = $article->user_id;
+        $notification->notifiable_id = $comment->id;
+        $notification->type = 'comment';
+        $notification->notifiable_type = Comment::class;
+        $notification->caused_by_user_id = auth()->user()->id;
+        $notification->save();
 
         return redirect()->back();
     }

@@ -6,8 +6,8 @@ use App\Article;
 use App\Tag;
 use App\User;
 use App\Profile;
+use App\Notification;
 use App\Http\Requests\ArticleRequest;
-use App\Notifications\ArticleLikedNotification;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -135,8 +135,14 @@ class ArticleController extends Controller
         $article->likes()->detach($request->user()->id);
         $article->likes()->attach($request->user()->id);
 
-        // 投稿にいいねがついたら通知
-        // $article->user->notify(new ArticleLikedNotification($article, auth()->user()));
+        // 通知を作成
+        $notification = new Notification();
+        $notification->user_id = $article->user_id;
+        $notification->notifiable_id = $article->id;
+        $notification->type = 'like';
+        $notification->notifiable_type = Article::class;
+        $notification->caused_by_user_id = auth()->user()->id;
+        $notification->save();
 
         return [
             'id' => $article->id,
