@@ -46,7 +46,7 @@
                                 @if ($notification->type === 'like')
                                     <a href="{{ route('articles.show', ['article' => $notification->notifiable_id]) }}">{{ \App\Article::find($notification->notifiable_id)->title }}</a><a>が</a><a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a><a>さんにいいねされました。</a>
                                 @elseif ($notification->type === 'comment')
-                                    <a href="{{ route('articles.show', ['article' => $notification->notifiable_id]) }}">{{ \App\Article::find($notification->notifiable_id)->title }}</a><a>が</a><a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a><a>さんにコメントされました。</a>
+                                    <a href="{{ route('articles.show', ['article' => $notification->notifiable_id]) }}">{{ \App\Article::find($notification->user_id)->title }}</a><a>が</a><a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a><a>さんにコメントされました。</a>
                                 @elseif ($notification->type === 'follow')
                                     <a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a><a>さんにフォローされました。</a>
                                 @endif
@@ -59,7 +59,6 @@
         </div>
       </li>
       @endauth
-
 
       @auth
       <!-- Dropdown -->
