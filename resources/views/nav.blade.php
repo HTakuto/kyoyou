@@ -46,12 +46,18 @@
                                 @if ($notification->type === 'like')
                                     <a href="{{ route('articles.show', ['article' => $notification->notifiable_id]) }}">{{ \App\Article::find($notification->notifiable_id)->title }}</a><a>が</a><a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a><a>さんにいいねされました。</a>
                                 @elseif ($notification->type === 'comment')
-                                    <a href="{{ route('articles.show', ['article' => $notification->notifiable_id]) }}">{{ \App\Article::find($notification->notifiable_id)->title }}</a><a>が</a><a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a><a>さんにコメントされました。</a>
+                                    <a href="{{ route('articles.show', ['article' => $notification->notifiable_id]) }}">{{ \App\Article::find($notification->user_id)->title }}</a><a>が</a><a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a><a>さんにコメントされました。</a>
                                 @elseif ($notification->type === 'follow')
                                     <a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a><a>さんにフォローされました。</a>
                                 @endif
+                                <div class="text-right" style="float: right;">
+                                    <form action="{{ route('notifications.markAsRead', ['notification' => $notification->id]) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-light text-black">既読する</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="text-gray-400 text-xs text-right" style="margin-top: -0.5rem;">{{ $notification->created_at->diffForHumans() }}</div>
+                            <div class="text-gray-400 text-xs">{{ $notification->created_at->diffForHumans() }}</div>
                         </div>
                     @endunless
                 @endforeach
@@ -59,7 +65,6 @@
         </div>
       </li>
       @endauth
-
 
       @auth
       <!-- Dropdown -->

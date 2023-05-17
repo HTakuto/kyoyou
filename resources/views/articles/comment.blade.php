@@ -15,7 +15,7 @@
                     <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
                     @if ($article->user->profile && $article->user->profile->user_image)
                         <div class="d-flex align-items-center">
-                            <img src="{{ Storage::disk('public')->url('images/' . $article->user->profile->user_image) }}" alt="アイコン" class="rounded-circle me-2" w height="48" width="46.5">
+                            <img src="{{ Storage::disk('public')->url('images/' . $article->user->profile->user_image) }}" alt="アイコン" class="rounded-circle me-2" w height="48" width="46.5" style="margin-right: 10px;">
                             <h5 class="mb-0">{{ $comment->user->name }}</h5>
                         </div>
                     @else
