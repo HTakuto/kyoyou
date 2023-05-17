@@ -46,3 +46,5 @@ Route::get('/profiles/edit', 'ProfileController@edit')->name('profiles.edit');
 Route::patch('/profiles', 'ProfileController@update')->name('profiles.update');
 
 Route::resource('comments', 'CommentController')->only(['store']);
+
+Route::post('/notifications/{notification}/markAsRead', 'NotificationController@markAsRead')->name('notifications.markAsRead');
