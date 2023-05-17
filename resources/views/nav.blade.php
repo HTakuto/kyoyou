@@ -50,8 +50,14 @@
                                 @elseif ($notification->type === 'follow')
                                     <a href="{{ route('users.show', ['name' => $notification->causedByUser->name]) }}">{{ $notification->causedByUser->name }}</a><a>さんにフォローされました。</a>
                                 @endif
+                                <div class="text-right" style="float: right;">
+                                    <form action="{{ route('notifications.markAsRead', ['notification' => $notification->id]) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-light text-black">既読する</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="text-gray-400 text-xs text-right" style="margin-top: -0.5rem;">{{ $notification->created_at->diffForHumans() }}</div>
+                            <div class="text-gray-400 text-xs">{{ $notification->created_at->diffForHumans() }}</div>
                         </div>
                     @endunless
                 @endforeach
