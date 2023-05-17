@@ -3,7 +3,7 @@
       <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
       @if ($article->user->profile && $article->user->profile->user_image)
         <div class="col-md-3 col-sm-6 text-center">
-          <img  src="{{ Storage::disk('public')->url('profiles/' . $profile->user_image) }}"  alt="アイコン" class="rounded-circle" width="100">
+            <img src="{{ Storage::disk('public')->url('images/' . $article->user->profile->user_image) }}" alt="アイコン" class="rounded-circle" height="48" width="46.5">
         </div>
       @else
         <div class="col-md-3 col-sm-6 text-center">

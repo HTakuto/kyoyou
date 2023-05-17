@@ -66,7 +66,11 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user-circle"></i>
+            @if ($user->profile && $user->profile->user_image)
+                <img src="{{ Storage::disk('public')->url('images/' . $user->profile->user_image) }}" alt="アイコン" class="rounded-circle me-2" w height="30.1" width="32">
+            @else
+                <i class="fas fa-user-circle"></i>
+            @endif
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
           <button class="dropdown-item" type="button"
