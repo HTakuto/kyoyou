@@ -27,14 +27,15 @@ class ProfileController extends Controller
         $user = Auth::user();
         $profile = $user->profile;
 
+        $profile->fill($request->all())->save();
+
         if ($request->hasFile('user_image')) {
             $user_image = $request->file('user_image');
             $filename = time() . '_' . $user_image->getClientOriginalName();
-            $path = $user_image->storeAs('public/profiles', $filename);
+            $path = $user_image->storeAs('public/images', $filename);
             $profile->user_image = $filename;
+            $profile->save();
         }
-
-        $profile->fill($request->all())->save();
 
         return redirect()->route('users.show', ['name' => $user->name]);
     }

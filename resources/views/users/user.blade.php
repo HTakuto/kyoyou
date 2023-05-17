@@ -4,7 +4,7 @@
         <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
           @if ($user->profile && $user->profile->user_image)
             <div class="col-md-3 col-sm-6 text-center">
-              <img src="{{ asset('public/profiles/'.$user->profile->user_image) }}" alt="アイコン" class="rounded-circle" width="100">
+                <img src="{{ Storage::disk('public')->url('images/' . $user->profile->user_image) }}" alt="アイコン" class="rounded-circle me-2"  height="48" width="46.5">
             </div>
           @else
             <div class="col-md-3 col-sm-6 text-center">

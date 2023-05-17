@@ -44,7 +44,8 @@ class NotificationsServiceProvider extends ServiceProvider
             }
 
             $view->with('unreadNotificationsCount', $unreadNotificationsCount)
-                ->with('notifications', $notifications);
+                ->with('notifications', $notifications)
+                ->with('user', $user);
         });
     }
 }
