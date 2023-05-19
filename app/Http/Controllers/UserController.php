@@ -73,13 +73,15 @@ class UserController extends Controller
         $request->user()->followings()->attach($user);
 
         // 通知を作成
-        $notification = new Notification();
-        $notification->user_id = $user->id;
-        $notification->notifiable_id = $request->user()->id;
-        $notification->type = 'follow';
-        $notification->notifiable_type = User::class;
-        $notification->caused_by_user_id = auth()->user()->id;
-        $notification->save();
+        if ($user->id !== $request->user()->id) {
+            $notification = new Notification();
+            $notification->user_id = $user->id;
+            $notification->notifiable_id = $request->user()->id;
+            $notification->type = 'follow';
+            $notification->notifiable_type = User::class;
+            $notification->caused_by_user_id = auth()->user()->id;
+            $notification->save();
+        }
 
         return ['name' => $name];
     }

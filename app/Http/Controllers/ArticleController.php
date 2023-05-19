@@ -136,13 +136,15 @@ class ArticleController extends Controller
         $article->likes()->attach($request->user()->id);
 
         // 通知を作成
-        $notification = new Notification();
-        $notification->user_id = $article->user_id;
-        $notification->notifiable_id = $article->id;
-        $notification->type = 'like';
-        $notification->notifiable_type = Article::class;
-        $notification->caused_by_user_id = auth()->user()->id;
-        $notification->save();
+        if ($article->user_id !== $request->user()->id) {
+            $notification = new Notification();
+            $notification->user_id = $article->user_id;
+            $notification->notifiable_id = $article->id;
+            $notification->type = 'like';
+            $notification->notifiable_type = Article::class;
+            $notification->caused_by_user_id = auth()->user()->id;
+            $notification->save();
+        }
 
         return [
             'id' => $article->id,
