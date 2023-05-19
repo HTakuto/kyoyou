@@ -32,14 +32,17 @@ class CommentController extends Controller
 
         $article = Article::findOrFail($validatedData['article_id']);
 
+
         // 通知を作成
-        $notification = new Notification();
-        $notification->user_id = $article->user_id;
-        $notification->notifiable_id = $comment->id;
-        $notification->type = 'comment';
-        $notification->notifiable_type = Comment::class;
-        $notification->caused_by_user_id = auth()->user()->id;
-        $notification->save();
+        if ($article->user_id !== auth()->user()->id) {
+            $notification = new Notification();
+            $notification->user_id = $article->user_id;
+            $notification->notifiable_id = $comment->id;
+            $notification->type = 'comment';
+            $notification->notifiable_type = Comment::class;
+            $notification->caused_by_user_id = auth()->user()->id;
+            $notification->save();
+        }
 
         return redirect()->back();
     }
