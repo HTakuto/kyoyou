@@ -2,7 +2,7 @@
     <div class="card-header">ユーザーランキング</div>
     <ul class="list-group list-group-flush d-flex flex-wrap">
         @foreach($follow_ranking as $key => $user)
-          <li class="list-group-item-0 col-md-3 col-sm-6 d-flex align-items-center">
+          <li class="list-group-item d-flex align-items-center">
             @if ($key == 0)
               <span style="margin-right: 10px;"><i class="fas fa-medal text-warning"></i></span>
             @elseif ($key == 1)
@@ -32,7 +32,6 @@
               @endif
               <span style="margin-left: 10px;">{{ $user->name }}</span>
             </a>
-            <hr>
           </li>
         @endforeach
     </ul>
